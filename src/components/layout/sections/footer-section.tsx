@@ -33,7 +33,7 @@ export default function FooterSection() {
                     aria-label="go home"
                     className="mx-auto block size-fit">
                     <Image
-                        src="/rtr-logo-full.png"
+                        src="/RTR-LOGO.png"
                         alt="RTR Logo"
                         width={160}
                         height={90}

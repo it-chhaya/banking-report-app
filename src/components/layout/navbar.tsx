@@ -51,7 +51,7 @@ interface Navbar1Props {
 export const Navbar = ({
   logo = {
     url: "/",
-    src: "/rtr-logo-full.png",
+    src: "/RTR-LOGO.png",
     alt: "Report App of ISTAD",
     title: "ISTAD",
   },
