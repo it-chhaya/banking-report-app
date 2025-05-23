@@ -1,41 +1,43 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 const links = [
     {
         title: 'Features',
-        href: '#',
+        href: '/features',
     },
     {
-        title: 'Solution',
-        href: '#',
+        title: 'Team',
+        href: '/team',
     },
     {
-        title: 'Customers',
-        href: '#',
+        title: 'Contact Us',
+        href: '/contact-us',
     },
     {
-        title: 'Pricing',
-        href: '#',
+        title: 'About Us',
+        href: '/about-us',
     },
     {
-        title: 'Help',
-        href: '#',
-    },
-    {
-        title: 'About',
-        href: '#',
+        title: 'FAQ',
+        href: '/faq',
     },
 ]
 
 export default function FooterSection() {
     return (
-        <footer className="bg-muted py-16">
+        <footer className="py-16">
             <div className="mx-auto max-w-5xl px-6">
                 <Link
                     href="/"
                     aria-label="go home"
                     className="mx-auto block size-fit">
-                    ISTAD
+                    <Image
+                        src="/rtr-logo-full.png"
+                        alt="RTR Logo"
+                        width={160}
+                        height={90}
+                    />
                 </Link>
 
                 <div className="my-8 flex flex-wrap justify-center gap-6">
@@ -157,7 +159,7 @@ export default function FooterSection() {
                         </svg>
                     </Link>
                 </div>
-                <span className="text-muted-foreground block text-center text-sm"> © {new Date().getFullYear()} Tailark Mist, All rights reserved</span>
+                <span className="text-muted-foreground block text-center text-sm"> © {new Date().getFullYear()} ISTAD, All rights reserved</span>
             </div>
         </footer>
     )
