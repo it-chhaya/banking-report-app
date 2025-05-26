@@ -1,14 +1,25 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+
+  const router = useRouter()
+
+  function login() {
+    // login logic
+    router.push("/dashboard")
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <form>
@@ -44,7 +55,9 @@ export function LoginForm({
                 required
               />
             </div>
-            <Button type="submit" className="w-full">
+            <Button
+              onClick={login}
+              type="button" className="w-full">
               Login
             </Button>
           </div>
