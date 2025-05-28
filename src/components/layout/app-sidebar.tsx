@@ -29,7 +29,7 @@ import {
   SidebarRail
 } from '@/components/ui/sidebar';
 import { UserAvatarProfile } from '@/components/user-avatar-profile';
-import { navItems } from '@/constants/data';
+import { appNavItems } from '@/constants/data';
 import { useMediaQuery } from '@/hooks/use-media-query';
 
 import {
@@ -83,64 +83,76 @@ export default function AppSidebar() {
         />
       </SidebarHeader>
       <SidebarContent className='overflow-x-hidden'>
-        <SidebarGroup>
-          <SidebarGroupLabel>Overview</SidebarGroupLabel>
-          <SidebarMenu>
-            {navItems.map((item) => {
-              const Icon = item.icon ? Icons[item.icon] : Icons.logo;
-              return item?.items && item?.items?.length > 0 ? (
-                <Collapsible
-                  key={item.title}
-                  asChild
-                  defaultOpen={item.isActive}
-                  className='group/collapsible'
-                >
-                  <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton
-                        tooltip={item.title}
-                        isActive={pathname === item.url}
+        {
+          appNavItems.map((appNavItem) => {
+            return (
+              <SidebarGroup key={appNavItem.section}>
+                <SidebarGroupLabel>{appNavItem.section}</SidebarGroupLabel>
+                <SidebarMenu>
+                  {appNavItem.navItems.map((item) => {
+                    const Icon = item.icon ? Icons[item.icon] : Icons.logo;
+                    return item?.items && item?.items?.length > 0 ? (
+                      <Collapsible
+                        key={item.title}
+                        asChild
+                        defaultOpen={item.isActive}
+                        className='group/collapsible'
                       >
-                        {item.icon && <Icon />}
-                        <span>{item.title}</span>
-                        <IconChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={pathname === subItem.url}
+                        <SidebarMenuItem>
+                          <CollapsibleTrigger asChild>
+                            <SidebarMenuButton
+                              tooltip={item.title}
+                              isActive={pathname === item.url}
                             >
-                              <Link href={subItem.url}>
-                                <span>{subItem.title}</span>
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
-                  </SidebarMenuItem>
-                </Collapsible>
-              ) : (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    tooltip={item.title}
-                    isActive={pathname === item.url}
-                  >
-                    <Link href={item.url}>
-                      <Icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              );
-            })}
-          </SidebarMenu>
-        </SidebarGroup>
+                              {item.icon && <Icon />}
+                              <span>{item.title}</span>
+                              <IconChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                            </SidebarMenuButton>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent>
+                            <SidebarMenuSub>
+                              {item.items?.map((subItem) => {
+                                const SubIcon = subItem.icon ? Icons[subItem.icon] : Icons.logo;
+                                return (
+                                  (
+                                    <SidebarMenuSubItem key={subItem.title}>
+                                      <SidebarMenuSubButton
+                                        asChild
+                                        isActive={pathname === subItem.url}
+                                      >
+                                        <Link href={subItem.url}>
+                                          {subItem.icon && <SubIcon />}
+                                          <span>{subItem.title}</span>
+                                        </Link>
+                                      </SidebarMenuSubButton>
+                                    </SidebarMenuSubItem>
+                                  )
+                                )
+                              })}
+                            </SidebarMenuSub>
+                          </CollapsibleContent>
+                        </SidebarMenuItem>
+                      </Collapsible>
+                    ) : (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          tooltip={item.title}
+                          isActive={pathname === item.url}
+                        >
+                          <Link href={item.url}>
+                            <Icon />
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    );
+                  })}
+                </SidebarMenu>
+              </SidebarGroup>
+            )
+          })
+        }
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
@@ -152,16 +164,16 @@ export default function AppSidebar() {
                   className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
                 >
                   <UserAvatarProfile
-                      className='h-8 w-8 rounded-lg'
-                      showInfo
-                      user={{
-                        imageUrl: "/RTR-LOGO.png",
-                        fullName: "Chhaya",
-                        emailAddresses: [
-                            {emailAddress: "it.chhaya@gmail.com"}
-                        ]
-                      }}
-                    />
+                    className='h-8 w-8 rounded-lg'
+                    showInfo
+                    user={{
+                      imageUrl: "/RTR-LOGO.png",
+                      fullName: "Chhaya",
+                      emailAddresses: [
+                        { emailAddress: "it.chhaya@gmail.com" }
+                      ]
+                    }}
+                  />
                   <IconChevronsDown className='ml-auto size-4' />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -174,16 +186,16 @@ export default function AppSidebar() {
                 <DropdownMenuLabel className='p-0 font-normal'>
                   <div className='px-1 py-1.5'>
                     <UserAvatarProfile
-                        className='h-8 w-8 rounded-lg'
-                        showInfo
-                        user={{
+                      className='h-8 w-8 rounded-lg'
+                      showInfo
+                      user={{
                         imageUrl: "/RTR-LOGO.png",
                         fullName: "Chhaya",
                         emailAddresses: [
-                            {emailAddress: "it.chhaya@gmail.com"}
+                          { emailAddress: "it.chhaya@gmail.com" }
                         ]
                       }}
-                      />
+                    />
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
