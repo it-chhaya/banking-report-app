@@ -2,6 +2,7 @@ import { Heading } from "@/components/heading";
 import PageContainer from "@/components/layout/page-container";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import UserListPage from "@/features/users/components/user-list-page";
 import { cn } from "@/lib/utils";
 import { IconPlus } from "@tabler/icons-react";
 import Link from "next/link";
@@ -23,7 +24,7 @@ export default function Page() {
                     </Link>
                 </div>
                 <Separator />
-                
+                <UserListPage />
             </div>
         </PageContainer>
     )
