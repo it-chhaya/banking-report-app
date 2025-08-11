@@ -1,8 +1,9 @@
-type Payment = {
+export type Payment = {
   id: string
   amount: number
   status: "pending" | "processing" | "success" | "failed"
-  email: string
+  email: string,
+  image: string
 }
 
 export const payments: Payment[] = [
@@ -11,12 +12,14 @@ export const payments: Payment[] = [
     amount: 100,
     status: "pending",
     email: "m@example.com",
+    image: "https://c8.alamy.com/comp/JM8A5T/cambodia-angkor-wat-temple-complex-with-the-buddhist-kmer-flag-JM8A5T.jpg"
   },
   {
     id: "489e1d42",
     amount: 125,
     status: "processing",
     email: "example@gmail.com",
+    image: "https://cdn.britannica.com/27/4027-050-15A75C70/Flag-Cambodia.jpg"
   },
 ]
 
