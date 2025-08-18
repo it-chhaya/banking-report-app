@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,8 +12,28 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { UserAvatarProfile } from "@/components/user-avatar-profile";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+type UserProfileType = {
+  username: string,
+  email: string,
+  familyName: string,
+  givenName: string
+}
+
 export function UserNav() {
   const router = useRouter();
+
+  const [userProfile, setUserProfile] = useState<UserProfileType>()
+
+  useEffect(() => {
+    fetch("/api/v1/users/me")
+    .then(res => res.json())
+    .then(json => {
+      console.log("JSON:", json)
+      setUserProfile(json)
+    })
+  }, [])
 
   return (
     <DropdownMenu>
@@ -36,10 +57,10 @@ export function UserNav() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm leading-none font-medium">
-                Chhaya
+                {userProfile?.familyName + " " + userProfile?.givenName}
             </p>
             <p className="text-muted-foreground text-xs leading-none">
-              it.chhaya@gmail.com
+              {userProfile?.email}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -54,6 +75,9 @@ export function UserNav() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem
+            onClick={() => {
+              window.location.href = "/logout"
+            }}
             className="text-red-600 focus:text-red-600">
           Log out
         </DropdownMenuItem>

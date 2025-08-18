@@ -46,6 +46,10 @@ interface Navbar1Props {
       url: string;
     };
   };
+  dashboard?: {
+    title: string;
+    url: string;
+  }
 }
 
 export const Navbar = ({
@@ -105,8 +109,11 @@ export const Navbar = ({
     },
   ],
   auth = {
-    login: { title: "Login", url: "/login" },
+    login: { title: "Login", url: "/oauth2/authorization/nextjs" },
   },
+  dashboard = {
+    title: "Dashboard", url: "/dashboard"
+  }
 }: Navbar1Props) => {
   return (
     <section className="py-4">
@@ -132,6 +139,9 @@ export const Navbar = ({
           <div className="flex gap-2">
             <Button asChild variant="outline" size="sm">
               <Link href={auth.login.url}>{auth.login.title}</Link>
+            </Button>
+            <Button asChild variant="outline" size="sm">
+              <Link href={dashboard.url}>{dashboard.title}</Link>
             </Button>
           </div>
         </nav>
