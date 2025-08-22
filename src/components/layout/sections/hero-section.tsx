@@ -1,8 +1,12 @@
+"use client"
+
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, CirclePlay } from "lucide-react";
 import Image from "next/image";
+import { useAppDispatch } from "@/lib/hooks";
+import { increment } from "@/features/counter/counterSlice";
 
 const heroData = {
   headline: "Real-Time Banking Insights, Anytime",
@@ -11,6 +15,9 @@ const heroData = {
 };
 
 export default function HeroSection() {
+
+  const dispatch = useAppDispatch()
+
   return (
     <>
       <main className="overflow-hidden">
@@ -27,11 +34,15 @@ export default function HeroSection() {
                   </p>
 
                   <div className="flex items-center gap-3">
-                    <Button asChild size="lg" className="pr-4.5">
-                      <Link href="#link">
+                    <Button
+                      onClick={() => {
+                        dispatch(increment())
+                      }}
+                    asChild size="lg" className="pr-4.5">
+                      <div>
                         <span className="text-nowrap">Get Started</span>
                         <ChevronRight className="opacity-50" />
-                      </Link>
+                      </div>
                     </Button>
                     <Button
                       key={2}

@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { cookies } from "next/headers";
 import { ActiveThemeProvider } from "@/components/active-theme";
 import { Toaster } from "@/components/ui/sonner";
+import StoreProvider from "./StoreProvider";
 
 const META_THEME_COLORS = {
   light: '#ffffff',
@@ -55,7 +56,8 @@ export default async function RootLayout({
           fontVariables
         )}
       >
-        <ThemeProvider
+        <StoreProvider>
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
@@ -67,6 +69,7 @@ export default async function RootLayout({
               <Toaster />
             </ActiveThemeProvider>
           </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );

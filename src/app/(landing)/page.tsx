@@ -16,7 +16,7 @@ export default function Page() {
 
             <PricingComparatorSection />
 
-            <TestimonialSection />
+            {/* <TestimonialSection /> */}
 
         </>
     )

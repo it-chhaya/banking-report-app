@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { increment } from "@/features/counter/counterSlice";
 
 interface MenuItem {
   title: string;
@@ -126,6 +128,9 @@ export const Navbar = ({
 
   const [authType, setAuthType] = useState<IsAuthType>()
 
+  // Get count value from store
+  const count = useAppSelector(state => state.counter.value)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     fetch("/api/v1/auth/is-authenticated")
@@ -157,6 +162,18 @@ export const Navbar = ({
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
+          </div>
+          <div className="flex gap-2">
+              <h2 className="text-2xl font-black text-red-700">
+                {count}
+              </h2>
+              <Button variant="outline" size="sm"
+                onClick={() => {
+                  dispatch(increment())
+                }}
+              >
+                Add 1
+              </Button>
           </div>
           <div className="flex gap-2">
             {
