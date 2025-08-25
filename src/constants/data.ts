@@ -18,6 +18,14 @@ export const appNavItems: AppNavItem[] = [
         shortcut: ["d", "d"],
         items: [], // Empty array as there are no child items for Dashboard
       },
+      {
+        title: "Customer",
+        url: "/dashboard/customer",
+        icon: "user2",
+        isActive: false,
+        shortcut: ["c", "c"],
+        items: [], // Empty array as there are no child items for Dashboard
+      },
     ],
   },
   {
