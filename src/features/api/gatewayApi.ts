@@ -5,5 +5,6 @@ export const gatewayApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: process.env.GATEWAY_BASE_URL
     }),
+    tagTypes: ["CustomerResponse"],
     endpoints: () => ({})
 })
