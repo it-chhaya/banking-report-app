@@ -12,14 +12,11 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { useGetCustomersQuery } from "../customerApi"
+import CustomerActions from "./customer-actions"
 
 export function CustomerCards() {
 
-    const { data, isLoading, error } = useGetCustomersQuery()
-
-    console.log("data:", data)
-    console.log("isLoading:", isLoading)
-    console.log("error:", error)
+    const { data } = useGetCustomersQuery()
 
     return (
         <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-3 gap-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-3 @5xl/main:grid-cols-3">
@@ -34,8 +31,9 @@ export function CustomerCards() {
                             <CardAction>
                                 <Badge variant="outline">
                                     <IconTrendingUp />
-                                    segment
+                                    {customer.segment}
                                 </Badge>
+                                <CustomerActions/>
                             </CardAction>
                         </CardHeader>
                         <CardFooter className="flex-col items-start gap-1.5 text-sm">

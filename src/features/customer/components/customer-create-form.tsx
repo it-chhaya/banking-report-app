@@ -58,11 +58,15 @@ export default function CustomerCreateForm() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            "dateOfBirth": new Date()
+            firstName: "",
+            lastName: "",
+            email: "",
+            phoneNumber: "",
+            dateOfBirth: new Date()
         },
     })
 
-    const [ createCustomer, {data, isLoading} ] = useCreateCustomerMutation()
+    const [ createCustomer, {isLoading} ] = useCreateCustomerMutation()
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
@@ -213,7 +217,9 @@ export default function CustomerCreateForm() {
                     )}
                 />
 
-                <Button type="submit">Create</Button>
+                <Button type="submit" disabled={isLoading}>
+                    { isLoading ? "Creating" : "Create"}
+                </Button>
             </form>
         </Form>
     )

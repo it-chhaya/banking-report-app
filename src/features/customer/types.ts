@@ -2,7 +2,8 @@ export type CustomerResponse = {
     customerNo: string,
     firstName: string,
     lastName: string,
-    email: string
+    email: string,
+    segment: string
 }
 
 export type CreateCustomerRequest = {
