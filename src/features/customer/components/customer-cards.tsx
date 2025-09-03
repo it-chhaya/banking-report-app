@@ -33,7 +33,7 @@ export function CustomerCards() {
                                     <IconTrendingUp />
                                     {customer.segment}
                                 </Badge>
-                                <CustomerActions/>
+                                <CustomerActions data={customer.customerNo}/>
                             </CardAction>
                         </CardHeader>
                         <CardFooter className="flex-col items-start gap-1.5 text-sm">

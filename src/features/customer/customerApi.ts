@@ -9,6 +9,12 @@ export const customerApi = gatewayApi.injectEndpoints({
             query: () => endpoint,
             providesTags: ["CustomerResponse"]
         }),
+        getCustomerByNo: builder.query<CustomerResponse, string>({
+            query: (customerNo) => ({
+                url: endpoint + "/" + customerNo,
+                method: "GET"
+            })
+        }),
         createCustomer: builder.mutation<CustomerResponse, CreateCustomerRequest>({
             query: (createCustomerRequest) => ({
                 url: endpoint,
@@ -22,5 +28,6 @@ export const customerApi = gatewayApi.injectEndpoints({
 
 export const {
      useGetCustomersQuery,
+     useGetCustomerByNoQuery,
      useCreateCustomerMutation
 } = customerApi

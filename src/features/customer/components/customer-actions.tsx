@@ -10,7 +10,9 @@ import { MoreHorizontal } from "lucide-react"
 import CustomerInfoDialog from "./customer-info-dialog"
 import { useState } from "react"
 
-export default function CustomerActions() {
+export default function CustomerActions({data}:{
+    data: string
+}) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -26,6 +28,7 @@ export default function CustomerActions() {
             <CustomerInfoDialog
                 open={isOpen}
                 isClose={() => setIsOpen(false)}
+                data={data}
             />
             
             <DropdownMenu modal={false}>
