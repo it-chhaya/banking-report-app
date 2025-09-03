@@ -10,6 +10,7 @@ import { MoreHorizontal } from "lucide-react"
 import CustomerInfoDialog from "./customer-info-dialog"
 import { useState } from "react"
 import { CustomerDeleteDialog } from "./customer-delete-dialog"
+import Link from "next/link"
 
 export default function CustomerActions({data}:{
     data: string
@@ -56,7 +57,9 @@ export default function CustomerActions({data}:{
                     <DropdownMenuItem onClick={() => onCustomerDetail()}>
                         Details
                     </DropdownMenuItem>
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <Link href={`/dashboard/customer/${data}`}>Edit</Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() => onDeleteCustomer()}
                         className="text-red-700 focus:text-red-700"

@@ -29,7 +29,15 @@ export const customerApi = gatewayApi.injectEndpoints({
                 method: "DELETE"
             }),
             invalidatesTags: ["CustomerResponse"]
-        })
+        }),
+        updateCustomerByNo: builder.mutation<CustomerResponse, {customerNo: string, data: CreateCustomerRequest}>({
+            query: ({customerNo, data}) => ({
+                url: endpoint + "/" + customerNo,
+                method: "PUT",
+                body: data,
+            }),
+            invalidatesTags: ["CustomerResponse"]
+        }),
     })
 })
 
@@ -37,5 +45,6 @@ export const {
      useGetCustomersQuery,
      useGetCustomerByNoQuery,
      useCreateCustomerMutation,
-     useDeleteCustomerByNoMutation
+     useDeleteCustomerByNoMutation,
+     useUpdateCustomerByNoMutation
 } = customerApi
