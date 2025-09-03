@@ -9,16 +9,23 @@ import {
 import { MoreHorizontal } from "lucide-react"
 import CustomerInfoDialog from "./customer-info-dialog"
 import { useState } from "react"
+import { CustomerDeleteDialog } from "./customer-delete-dialog"
 
 export default function CustomerActions({data}:{
     data: string
 }) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState<boolean>(false)
 
     function onCustomerDetail() {
         console.log('onCustomerDetail')
         setIsOpen(true)
+    }
+
+    function onDeleteCustomer() {
+        console.log("onDeleteCustomer")
+        setIsOpenDeleteDialog(true)
     }
 
 
@@ -28,6 +35,12 @@ export default function CustomerActions({data}:{
             <CustomerInfoDialog
                 open={isOpen}
                 isClose={() => setIsOpen(false)}
+                data={data}
+            />
+
+            <CustomerDeleteDialog
+                open={isOpenDeleteDialog}
+                isClose={() => setIsOpenDeleteDialog(false)}
                 data={data}
             />
             
@@ -44,7 +57,10 @@ export default function CustomerActions({data}:{
                         Details
                     </DropdownMenuItem>
                     <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem className="text-red-700 focus:text-red-700">Delete</DropdownMenuItem>
+                    <DropdownMenuItem
+                        onClick={() => onDeleteCustomer()}
+                        className="text-red-700 focus:text-red-700"
+                    >Delete</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </>
